@@ -1,0 +1,15 @@
+import cv2
+import numpy as np
+img = cv2.imread("anhmau.png",1)
+#print(img)
+img_hsv = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+cv2.imshow("mau hsv",img_hsv)
+cv2.waitKey(1000)
+#cv2.imshow("anh cat",img_hsv[200:400,500:700])
+min_mau = np.array([98,255,232])
+max_mau = np.array([101,255,232])
+mask=cv2.inRange(img_hsv,min_mau,max_mau)
+final = cv2.bitwise_and(img_hsv,img_hsv,mask=mask)
+cv2.imshow("tach mau",final)
+cv2.waitKey()
+cv2.destroyAllWindows()
